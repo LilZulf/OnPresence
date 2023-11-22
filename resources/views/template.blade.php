@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <script src="assets/static/js/initTheme.js"></script>
+    <script src="{{ asset('dist/assets/static/js/initTheme.js')}}"></script>
     <div id="app">
         <div id="sidebar">
             <div class="sidebar-wrapper active">
@@ -74,7 +74,7 @@
                         </li>
 
                         <li class="sidebar-item  ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="/siswa" class='sidebar-link'>
                                 <i class="bi bi-people-fill"></i>
                                 <span>Siswa</span>
                             </a>
