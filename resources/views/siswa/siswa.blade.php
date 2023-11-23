@@ -22,7 +22,8 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($siswa as $item)    
+            @if (!$siswa->isEmpty())
+            @foreach ($siswa as $item)
             <tr>
                 <td>{{$item->id}}</td>
                 <td>{{$item->nama}}</td>
@@ -31,11 +32,9 @@
                 <td>{{$item->jenis_kelamin}}</td>
                 <td><a class="btn btn-Warning" href="/siswa/edit/{{$item->id}}" role="button">Ubah</a> <a class="btn btn-dangger" href="/siswa/delete/{{$item->id}}" role="button">Hapus</a></td>
             </tr>
-            @empty
-                <tr>
-                    <td>Kosong</td>
-                </tr>
-            @endforelse
+            @endforeach
+            @endif
+            
         </tbody>
         <tfoot>
             <tr>
