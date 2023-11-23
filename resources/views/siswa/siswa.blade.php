@@ -10,6 +10,7 @@
 @section('content')
     <div class="table-responsive">
         <a class="btn btn-primary mb-2" href="/siswa/tambah" role="button">Tambah Siswa</a>
+        <a class="btn btn-success mb-2" href="/siswa/import" role="button">Import Excel</a>
         <table id="example" class="table table-striped table-bordered datatables" style="width:100%">
         <thead>
             <tr>
