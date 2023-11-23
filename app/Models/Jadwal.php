@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jadwal extends Model
 {
-    use HasFactory;
+    protected $table = 'jadwals';
+    protected $fillable = ['id','hari','mulai','selesai','pengajar','kelas',];
+    protected $primaryKey= 'id';
+    public $incrementing = true;
+    public $timestamps = false;
 }
