@@ -10,6 +10,7 @@
 @section('content')
     <div class="table-responsive">
         <a class="btn btn-primary mb-2" href="/siswa/tambah" role="button">Tambah Siswa</a>
+        <a class="btn btn-success mb-2" href="/siswa/import" role="button">Import Excel</a>
         <table id="example" class="table table-striped table-bordered datatables" style="width:100%">
         <thead>
             <tr>
@@ -22,7 +23,8 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($siswa as $item)    
+            @if (!$siswa->isEmpty())
+            @foreach ($siswa as $item)
             <tr>
                 <td>{{$item->id}}</td>
                 <td>{{$item->nama}}</td>
@@ -31,11 +33,9 @@
                 <td>{{$item->jenis_kelamin}}</td>
                 <td><a class="btn btn-Warning" href="/siswa/edit/{{$item->id}}" role="button">Ubah</a> <a class="btn btn-dangger" href="/siswa/delete/{{$item->id}}" role="button">Hapus</a></td>
             </tr>
-            @empty
-                <tr>
-                    <td>Kosong</td>
-                </tr>
-            @endforelse
+            @endforeach
+            @endif
+            
         </tbody>
         <tfoot>
             <tr>

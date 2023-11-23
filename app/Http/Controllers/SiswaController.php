@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\SiswaImport;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Excel;
+use Maatwebsite\Excel\Excel as ExcelExcel;
+use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
 use SebastianBergmann\Type\VoidType;
 
 class SiswaController extends Controller
 {
     public function index() {
-        $siswa = Siswa::paginate(10);
+        $siswa = Siswa::paginate(1000);
         return view('siswa/siswa', ['siswa' => $siswa ]);
     }
     public function tambah()  {
@@ -61,5 +65,19 @@ class SiswaController extends Controller
 
         return redirect('/siswa');
         
+    }
+
+    public function import() {
+        return view('siswa/uploadExcel');
+    }
+
+    public function importPro(Request $request)  {
+        // dd($request->all());
+        $request->validate([
+            'file' => 'required|file|mimes:xlsx', // Adjust allowed file types and size as needed
+        ]);
+        Excel::import(new SiswaImport(),$request->file('file'));
+
+        return redirect('/siswa');
     }
 }
