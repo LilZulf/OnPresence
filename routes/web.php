@@ -24,3 +24,5 @@ Route::post('/siswa/tambah',[SiswaController::class,'create']);
 Route::get('/siswa/edit/{id}',[SiswaController::class,'edit']);
 Route::put('/siswa/edit/{id}',[SiswaController::class,'editproses']);
 Route::get('/siswa/delete/{id}',[SiswaController::class,'delete']);
+Route::get('/siswa/import',[SiswaController::class,'import']);
+Route::post('/siswa/import',[SiswaController::class,'importPro']);
