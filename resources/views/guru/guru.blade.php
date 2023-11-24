@@ -19,7 +19,7 @@
                 <th>NIP</th>
                 <th>alamat</th>
                 <th>Jenis Kelamin</th>
-                <th>username</th>
+                <th>email</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -32,7 +32,7 @@
                 <td>{{$item->nip}}</td>
                 <td>{{$item->alamat}}</td>
                 <td>{{$item->jenis_kelamin}}</td>
-                <td>{{$item->username}}</td>
+                <td>{{$item->email}}</td>
                 <td><a class="btn btn-warning" href="/guru/edit/{{$item->id}}" role="button">Ubah</a> <a class="btn btn-danger" href="/guru/delete/{{$item->id}}" role="button">Hapus</a></td>
             </tr>
             @endforeach
@@ -46,7 +46,7 @@
                 <th>NIP</th>
                 <th>alamat</th>
                 <th>Jenis Kelamin</th>
-                <th>username</th>
+                <th>email</th>
                 <th>Aksi</th>
             </tr>
         </tfoot>

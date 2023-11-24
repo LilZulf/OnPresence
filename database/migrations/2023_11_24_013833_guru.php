@@ -17,7 +17,7 @@ return new class extends Migration
                 $table->string('nip');
                 $table->string('alamat');
                 $table->string('jenis_kelamin');
-                $table->string('username');
+                $table->string('email');
                 $table->string('password');
             });
     }

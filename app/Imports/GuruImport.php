@@ -20,7 +20,7 @@ class GuruImport implements ToCollection
                 $data ['nip'] = $row[2];
                 $data ['alamat'] = $row[3];
                 $data ['jenis_kelamin'] = $row[4];
-                $data ['username'] = $row[5];
+                $data ['email'] = $row[5];
                 $data ['password'] = $row[6];
 
                  Guru::create($data);
