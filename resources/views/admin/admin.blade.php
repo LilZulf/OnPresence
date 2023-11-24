@@ -57,10 +57,19 @@
         new DataTable('#example');
     </script>
     <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil',
-            text: '{{ session('success') }}',
-        });
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+            });
+        @endif
+        // @if (session('error'))
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Gagal',
+        //         text: '{{ session('error') }}',
+        //     });
+        // @endif
     </script>
 @endsection
