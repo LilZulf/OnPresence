@@ -29,9 +29,9 @@
                 <td>{{$item->id}}</td>
                 <td>{{$item->nama}}</td>
                 <td>{{$item->nisn}}</td>
-                <td>{{$item->id_kelas}}</td>
+                <td>{{($item->kelas)->nama_kelas}}</td>
                 <td>{{$item->jenis_kelamin}}</td>
-                <td><a class="btn btn-Warning" href="/siswa/edit/{{$item->id}}" role="button">Ubah</a> <a class="btn btn-dangger" href="/siswa/delete/{{$item->id}}" role="button">Hapus</a></td>
+                <td><a class="btn btn-warning" href="/siswa/edit/{{$item->id}}" role="button">Ubah</a> <a class="btn btn-danger" href="/siswa/delete/{{$item->id}}" role="button">Hapus</a></td>
             </tr>
             @endforeach
             @endif

@@ -2,12 +2,11 @@
 
 namespace App\Imports;
 
-use App\Models\Kelas;
-use App\Models\Siswa;
+use App\Models\Guru;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
-class SiswaImport implements ToCollection
+class GuruImport implements ToCollection
 {
     /**
     * @param Collection $collection
@@ -17,15 +16,14 @@ class SiswaImport implements ToCollection
         $indexKe = 1;
         foreach($collection as $row){
             if($indexKe > 1){
-                $data ['nama'] = $row[2];
-                $data ['nisn'] = $row[1];
-                $kelas = Kelas::where('nama_kelas', $row[3])->first();
-                if($kelas){
-                    $data['id_kelas'] = $kelas->id_kelas; 
-                }
+                $data ['nama_guru'] = $row[1];
+                $data ['nip'] = $row[2];
+                $data ['alamat'] = $row[3];
                 $data ['jenis_kelamin'] = $row[4];
+                $data ['username'] = $row[5];
+                $data ['password'] = $row[6];
 
-                 Siswa::create($data);
+                 Guru::create($data);
             }
             $indexKe++;
         }

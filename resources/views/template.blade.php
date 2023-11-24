@@ -118,7 +118,7 @@
                                     <a href="/admin" class="submenu-link">Admin</a>
                                 </li>
                                 <li class="submenu-item  ">
-                                    <a href="form-editor-ckeditor.html" class="submenu-link">Guru</a>
+                                    <a href="/guru" class="submenu-link">Guru</a>
                                 </li>
                             </ul>
                         </li>
