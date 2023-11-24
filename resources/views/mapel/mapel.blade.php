@@ -46,7 +46,24 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         new DataTable('#example');
+    </script>
+        <script>
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+            });
+        @endif
+        // @if (session('error'))
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Gagal',
+        //         text: '{{ session('error') }}',
+        //     });
+        // @endif
     </script>
 @endsection

@@ -32,3 +32,36 @@
     </div>
 </section>
 @endsection
+
+@section('script')
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            @if (session('errors'))
+                var errors = @json(session('errors')->all());
+                var errorMessage = errors;
+                var indonesianMessages = {
+                    'The kode_mapel has already been taken.': 'Kode Mata Pelajaran sudah ada.',
+                    'The kode_mapel field is required.': 'Kode Mata Pelajaran Harus Di Isi',
+                    'The nama_mapel field is required.': 'Nama Mata Pelajaran Harus Di Isi'
+
+                };
+                for (var key in indonesianMessages) {
+                    if (indonesianMessages.hasOwnProperty(key) && errorMessage.includes(key)) {
+                        errorMessage = indonesianMessages[key];
+                        break;
+                    }
+                }
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: errorMessage,
+                });
+            @endif
+        });
+    </script>
+@endsection
