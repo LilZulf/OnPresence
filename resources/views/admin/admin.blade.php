@@ -15,7 +15,6 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -26,7 +25,6 @@
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
-                            <td>{{ $item->password }}</td>
                             <td><a class="btn btn-warning" href="/admin/edit/{{ $item->id }}" role="button">Ubah</a> <a
                                     class="btn btn-danger" href="/admin/delete/{{ $item->id }}" role="button">Hapus</a>
                             </td>
@@ -39,7 +37,6 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Action</th>
                 </tr>
             </tfoot>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use SebastianBergmann\Type\VoidType;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -16,30 +17,28 @@ class UsersController extends Controller
     public function tambah()  {
         return view('admin/adminTambah');
     }
-    public function create(Request $request) {
-        // Validasi input menggunakan Validator
-        $validator = Validator::make($request->all(), [
-            'nama' => 'required|string|max:255',
-            'email' => 'required|email|unique:users|max:255',
-            'password' => 'required|string|min:6',
-        ]);
-    
-        // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan error
-        if ($validator->fails()) {
-            return redirect('/admin/tambah')->withErrors($validator)->withInput();
 
+public function create(Request $request) {
+    // Validasi input menggunakan Validator
+    $validator = Validator::make($request->all(), [
+        'nama' => 'required|string|max:255',
+        'email' => 'required|email|unique:users|max:255',
+        'password' => 'required|string|min:6',
+    ]);
 
-        }
-    
-        // Jika validasi berhasil, lanjutkan dengan proses penambahan data
-        User::create([
-            'name' => $request->nama,
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
-    
-        return redirect('/admin')->with('success', "Berhasil menambahkan Data Admin");
+    if ($validator->fails()) {
+        return redirect('/admin/tambah')->withErrors($validator)->withInput();
     }
+
+    User::create([
+        'name' => $request->nama,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+    ]);
+
+    return redirect('/admin')->with('success', "Berhasil menambahkan Data Admin");
+}
+
     
     public function edit($id)  {
        $user = User::where('id','=', $id)->get()->first();
@@ -61,7 +60,7 @@ class UsersController extends Controller
         $user->update([
             'name' => $request->nama,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
         ]);
     
         return redirect('/admin')->with('success', "Berhasil Mengupdate Data Admin");
