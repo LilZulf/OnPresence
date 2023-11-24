@@ -29,7 +29,7 @@
                         <div class="row d-flex justify-content-center align-items-center">
                             <div class="logo">
                                 <a href="/">
-                                    <img src="{{ asset('dist/assets/compiled/png/logo.png') }}" class="img-fluid"
+                                    <img src="{{ asset('dist/assets/compiled/png/Logo.png') }}" class="img-fluid"
                                         alt="Logo" style="width: 250px; height: auto;" srcset="">
                                 </a>
                             </div>
