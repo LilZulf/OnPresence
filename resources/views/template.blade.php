@@ -92,7 +92,7 @@
                         </li>
 
                         <li class="sidebar-item {{ $currentPath == 'kelas' ? 'active' : '' }} ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="/kelas" class='sidebar-link'>
                                 <i class="bi bi-building-fill"></i>
                                 <span>Kelas</span>
                             </a>
