@@ -1,11 +1,11 @@
 @extends('template')
 @section('content')
 <div class="col-12 col-md-12">
-    <form action="/siswa/import" method="POST" enctype="multipart/form-data">
+    <form action="/guru/import" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Import Data Siswa dengan Excel</h5>
+                <h5 class="card-title">Import Data Guru dengan Excel</h5>
             </div>
             <div class="card-content">
                 <div class="card-body">

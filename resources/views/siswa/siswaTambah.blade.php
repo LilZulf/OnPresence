@@ -26,8 +26,11 @@
                             <label for="helperText">Kelas</label>
                                 <div>
                                     <select class="choices form-select" name="id_kelas">
-                                        <option value="1" >Square</option>
-                                        <option value="2" >Rectangle</option>
+                                        @foreach ($kelas as $item)
+                                        <option value="{{$item->id_kelas}}" >{{$item->nama_kelas}}</option>
+                                        @endforeach
+                                        {{-- <option value="1" >Square</option>
+                                        <option value="2" >Rectangle</option> --}}
                                     </select>
                                 </div>
                         </div>
