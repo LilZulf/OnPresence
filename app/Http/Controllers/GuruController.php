@@ -6,6 +6,7 @@ use App\Imports\GuruImport;
 use App\Models\Guru;
 use Illuminate\Http\Request;
 use Excel;
+use Illuminate\Support\Facades\Validator;
 
 class GuruController extends Controller
 {
@@ -18,21 +19,32 @@ class GuruController extends Controller
         return view('guru/guruTambah');
     }
     public function create(Request $request)  {
-        // dd($request->jenis_kelamin);
-        $this->validate($request,[
+         // Validasi input menggunakan Validator
+        $validator = Validator::make($request->all(), [
             'nama_guru' => 'required',
             'nip' => 'required|unique:gurus',
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
-            'username' => 'required',
-            'password' => 'required']);
+            'email' => 'required|email|unique:gurus|max:255',
+            'password' => 'required|string|min:6',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/guru/tambah')->withErrors($validator)->withInput();
+        }
+        // $this->validate($request,[
+        //     'nama_guru' => 'required',
+        //     'nip' => 'required|unique:gurus',
+        //     'alamat' => 'required',
+        //     'jenis_kelamin' => 'required',
+        //     'email' => 'required|email|unique:users|max:255',
+        //     'password' => 'required']);
 
             Guru::create([
             'nama_guru' => $request->nama_guru,
             'nip' => $request->nip,
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'username' => $request->username,
+            'email' => $request->email,
             'password' => $request->password
         ]);
         return redirect('/guru');
@@ -47,20 +59,24 @@ class GuruController extends Controller
         $guru = Guru::find($id);
         // dd($guru);
 
-        $this->validate($request,[
+        $validator = Validator::make($request->all(), [
             'nama_guru' => 'required',
-             'nip' => 'required',
+            'nip' => 'required',
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
-            'username' => 'required',
-            'password' => 'required']);
+            'email' => 'required|email|unique:gurus|max:255',
+            'password' => 'required|string|min:6',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/guru/edit/'.$id)->withErrors($validator)->withInput();
+        }
 
         $guru->update([
             'nama_guru' => $request->nama_guru,
             'nip' => $request->nip,
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'username' => $request->username,
+            'email' => $request->email,
             'password' => $request->password
         ]);
         return redirect('/guru');

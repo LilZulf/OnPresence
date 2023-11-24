@@ -7,6 +7,8 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Excel;
+use Illuminate\Support\Facades\Validator;
+
 class SiswaController extends Controller
 {
     public function index() {
@@ -18,11 +20,16 @@ class SiswaController extends Controller
         return view('siswa/siswaTambah',['kelas'=>$kelas]);
     }
     public function create(Request $request)  {
-        $this->validate($request,[
+
+        $validator = Validator::make($request->all(), [
             'nama' => 'required',
             'nisn' => 'required|unique:siswas',
             'id_kelas' => 'required',
-            'jenis_kelamin' => 'required']);
+            'jenis_kelamin' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return redirect('/siswa/tambah')->withErrors($validator)->withInput();
+        }
 
         Siswa::create([
             'nama' => $request->nama,
@@ -43,11 +50,15 @@ class SiswaController extends Controller
         $siswa = Siswa::find($id);
         
 
-        $this->validate($request,[
+        $validator = Validator::make($request->all(), [
             'nama' => 'required',
             'nisn' => 'required',
             'id_kelas' => 'required',
-            'jenis_kelamin' => 'required']);
+            'jenis_kelamin' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return redirect('/siswa/edit/'.$id)->withErrors($validator)->withInput();
+        }
 
         $siswa->update([
             'nama' => $request->nama,
@@ -57,6 +68,7 @@ class SiswaController extends Controller
         ]);
         return redirect('/siswa');
     }
+    
 
     public function delete($id)  {
         $siswa =  Siswa::find($id);
