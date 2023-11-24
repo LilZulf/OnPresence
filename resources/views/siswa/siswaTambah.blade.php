@@ -35,7 +35,7 @@
                                 </div>
                         </div>
                         <div class="form-group">
-                            <label for="helperText">Kelas</label>
+                            <label for="helperText">Jenis Kelamin</label>
                                 <div>
                                     <select class="choices form-select" name="jenis_kelamin">
                                         <option value="Laki-Laki" >Laki-Laki</option>
