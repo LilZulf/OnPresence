@@ -27,13 +27,18 @@
                             <label for="helperText">Kelas</label>
                                 <div>
                                     <select class="choices form-select" name="id_kelas">
-                                        <option value="1" @selected($siswa->id_kelas == 1 )>Square</option>
-                                        <option value="2" @selected($siswa->id_kelas == 2 )>Rectangle</option>
+                                        @forelse ($kelas as $kelas)
+                                        <option value="{{$kelas->id_kelas}}" @selected($siswa->id_kelas == $kelas->id_kelas )>{{$kelas->nama_kelas}}</option>
+                                        @empty
+                                            
+                                        @endforelse
+                                        {{-- <option value="1" @selected($siswa->id_kelas == 1 )>{{$siswa->kelas->nama_kelas}}</option>
+                                        <option value="2" @selected($siswa->id_kelas == 2 )>Rectangle</option> --}}
                                     </select>
                                 </div>
                         </div>
                         <div class="form-group">
-                            <label for="helperText">Kelas</label>
+                            <label for="helperText">Jenis Kelamin</label>
                                 <div>
                                     <select class="choices form-select" name="jenis_kelamin">
                                         <option value="Laki-Laki" @selected($siswa->jenis_kelamin ===  'Laki-Laki')>Laki-Laki</option>
@@ -44,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-success" type="submit">Tambah</button>
+            <button class="btn btn-success" type="submit">Ubah</button>
         </form>
     </div>
 </section>

@@ -9,9 +9,14 @@ class Siswa extends Model
 {
     use HasFactory;
     protected $table = 'siswas';
-    protected $fillable = ['id','nama','nisn','id_kelas','jenis_kelamin'];
-    protected $primaryKey= 'id';
+    protected $fillable = ['nama','nisn','id_kelas','jenis_kelamin'];
     public $incrementing = true;
     public $timestamps = false;
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'id_kelas');
+    }
+
 
 }
