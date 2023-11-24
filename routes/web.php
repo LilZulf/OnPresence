@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +28,19 @@ Route::put('/siswa/edit/{id}',[SiswaController::class,'editproses']);
 Route::get('/siswa/delete/{id}',[SiswaController::class,'delete']);
 Route::get('/siswa/import',[SiswaController::class,'import']);
 Route::post('/siswa/import',[SiswaController::class,'importPro']);
+
+
+Route::get('/jadwal',[JadwalController::class,'index']);
+Route::get('/jadwal/tambah',[JadwalController::class,'tambah']);
+Route::post('/jadwal/tambah',[JadwalController::class,'create']);
+Route::get('/jadwal/edit/{id}',[JadwalController::class,'edit']);
+Route::put('/jadwal/edit/{id}',[JadwalController::class,'editproses']);
+Route::get('/jadwal/delete/{id}',[JadwalController::class,'delete']);
+
+
+Route::get('/admin',[UsersController::class,'index']);
+Route::get('/admin/tambah',[UsersController::class,'tambah']);
+Route::post('/admin/tambah',[UsersController::class,'create']);
+Route::get('/admin/edit/{id}',[UsersController::class,'edit']);
+Route::put('/admin/edit/{id}',[UsersController::class,'editproses']);
+Route::get('/admin/delete/{id}',[UsersController::class,'delete']);
