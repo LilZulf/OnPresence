@@ -35,8 +35,8 @@
                                 </div>
                         </div>
                         <div class="form-group">
-                            <label for="helpInputTop">Username</label>
-                            <input type="text" class="form-control" name="username" id="helpInputTop">
+                            <label for="helpInputTop">Email</label>
+                            <input type="email" class="form-control" name="email" id="helpInputTop">
                         </div>
                         <div class="form-group">
                             <label for="helpInputTop">Password</label>
@@ -49,4 +49,40 @@
         </form>
     </div>
 </section>
+@endsection
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            @if (session('errors'))
+                var errors = @json(session('errors')->all());
+                var errorMessage = errors;
+                var indonesianMessages = {
+                    'The email has already been taken.': 'Email sudah terdaftar.',
+                    'The nip has already been taken.': 'NIP sudah terdaftar.',
+                    'The nama_guru field is required.': 'Nama Harus Di Isi',
+                    'The nip field is required.': 'NIP Harus Di Isi',
+                    'The alamat field is required.': 'Alamat Harus Di Isi',
+                    'The jenis_kelamin field is required.': 'Jenis Kelamin Harus Di Isi',
+                    'The email field is required.': 'Email Harus Di Isi',
+                    'The password field is required.': 'Password Harus Di Isi'
+
+                };
+                for (var key in indonesianMessages) {
+                    if (indonesianMessages.hasOwnProperty(key) && errorMessage.includes(key)) {
+                        errorMessage = indonesianMessages[key];
+                        break;
+                    }
+                }
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: errorMessage,
+                });
+            @endif
+        });
+    </script>
 @endsection

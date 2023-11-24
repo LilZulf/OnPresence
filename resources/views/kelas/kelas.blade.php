@@ -4,34 +4,29 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 @endsection
 @section('title')
-    <h3>Daftar Siswa</h3>
+    <h3>Daftar Kelas</h3>
 
 @endsection
 @section('content')
     <div class="table-responsive">
-        <a class="btn btn-primary mb-2" href="/siswa/tambah" role="button">Tambah Siswa</a>
-        <a class="btn btn-success mb-2" href="/siswa/import" role="button">Import Excel</a>
+        <a class="btn btn-primary mb-2" href="/kelas/tambah" role="button">Tambah Kelas</a>
         <table id="example" class="table table-striped table-bordered datatables" style="width:100%">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama</th>
-                <th>NISN</th>
                 <th>Kelas</th>
-                <th>Jenis Kelamin</th>
+                <th>Wali Kelas</th>
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-            @if (!$siswa->isEmpty())
-            @foreach ($siswa as $item)
+            @if (!$kelas->isEmpty())
+            @foreach ($kelas as $item)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$item->nama}}</td>
-                <td>{{$item->nisn}}</td>
-                <td>{{($item->kelas)->nama_kelas}}</td>
-                <td>{{$item->jenis_kelamin}}</td>
-                <td><a class="btn btn-warning" href="/siswa/edit/{{$item->id}}" role="button">Ubah</a> <a class="btn btn-danger" href="/siswa/delete/{{$item->id}}" role="button">Hapus</a></td>
+                <td>{{$item->nama_kelas}}</td>
+                <td>{{$item->nama_guru}}</td>
+                <td><a class="btn btn-warning" href="/kelas/edit/{{$item->id_kelas}}" role="button">Ubah</a> <a class="btn btn-danger" href="/kelas/delete/{{$item->id_kelas}}" role="button">Hapus</a></td>
             </tr>
             @endforeach
             @endif
@@ -40,10 +35,8 @@
         <tfoot>
             <tr>
                 <th>No</th>
-                <th>Nama</th>
-                <th>NISN</th>
                 <th>Kelas</th>
-                <th>Jenis Kelamin</th>
+                <th>Wali Kelas</th>
                 <th>Aksi</th>
             </tr>
         </tfoot>

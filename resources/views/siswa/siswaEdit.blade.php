@@ -54,3 +54,36 @@
     </div>
 </section>
 @endsection
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            @if (session('errors'))
+                var errors = @json(session('errors')->all());
+                var errorMessage = errors;
+                var indonesianMessages = {
+                    'The nisn has already been taken.': 'Email sudah terdaftar.',
+                    'The nama field is required.': 'Nama Harus Di Isi',
+                    'The nisn field is required.': 'NIP Harus Di Isi',
+                    'The kelas field is required.': 'Alamat Harus Di Isi',
+                    'The jenis_kelamin field is required.': 'Jenis Kelamin Harus Di Isi',
+
+                };
+                for (var key in indonesianMessages) {
+                    if (indonesianMessages.hasOwnProperty(key) && errorMessage.includes(key)) {
+                        errorMessage = indonesianMessages[key];
+                        break;
+                    }
+                }
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: errorMessage,
+                });
+            @endif
+        });
+    </script>
+@endsection
