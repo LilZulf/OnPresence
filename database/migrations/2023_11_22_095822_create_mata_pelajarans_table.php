@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mata_pelajarans', function (Blueprint $table) {
-            $table->id();
+            $table->bigInteger('id_mapel')->primary()->autoIncrement();
+            $table->string('kode_mapel');
+            $table->string('nama_mapel');
             $table->timestamps();
         });
     }
