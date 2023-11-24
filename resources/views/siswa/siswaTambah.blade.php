@@ -3,7 +3,7 @@
 <section class="section">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Tambah Siswa</h4>
+            <h4 class="card-title">Tambah Data Siswa</h4>
         </div>
 
         <div class="card-body">
