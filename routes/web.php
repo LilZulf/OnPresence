@@ -3,8 +3,9 @@
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\KelasController;
-use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\MataPelajaranController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +60,14 @@ Route::post('/kelas/tambah',[KelasController::class,'create']);
 Route::get('/kelas/edit/{id}',[KelasController::class,'edit']);
 Route::put('/kelas/update/{id}',[KelasController::class,'editproses']);
 Route::get('/kelas/delete/{id}',[KelasController::class,'delete']);
+
+Route::get('/mapel',[MataPelajaranController::class,'index']);
+Route::get('/mapel/tambah',[MataPelajaranController::class,'tambah']);
+Route::post('/mapel/tambah',[MataPelajaranController::class,'create']);
+Route::get('/mapel/edit/{id}',[MataPelajaranController::class,'edit']);
+Route::put('/mapel/update/{id}',[MataPelajaranController::class,'editproses']);
+Route::get('/mapel/delete/{id}',[MataPelajaranController::class,'delete']);
+
 Route::get('/login/admin', function () {
     return view('auth.login');
 });
