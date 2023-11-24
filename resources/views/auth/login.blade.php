@@ -1,3 +1,6 @@
+@php
+    $currentPath = Request::path();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,12 +28,12 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
-                        <div class="row align-items-end justify-content-center">
-                            <div class="col-md-4">
+                        <div class="row align-items-end">
+                            <div class="col-lg-6 col-md-3 col-sm-4">
                                 <img src="{{ asset('dist/assets/compiled/png/logo_smk.png') }}" class="img-fluid"
                                     alt="Logo" style="width: 100px; height: auto;" srcset="">
                             </div>
-                            <div class="col">
+                            <div class="col-lg-6 col-md-6 col-sm-7">
                                 <img src="{{ asset('dist/assets/compiled/png/logo.png') }}" class="img-fluid"
                                     alt="Logo" style="width: 350px; height: auto;" srcset="">
                             </div>
@@ -41,7 +44,7 @@
                                 style="width: 200px; height: auto;" srcset="">
                         </a> --}}
                     </div>
-                    <h1 class="auth-title">Log in Admin</h1>
+                    <h1 class="auth-title">Log in {{$currentPath == 'login/admin' ? 'Admin' : 'Guru'}}</h1>
                     <p class="auth-subtitle mb-5">Mohon Masukkan email dan password anda</p>
 
                     <form action="index.html">

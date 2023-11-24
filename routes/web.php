@@ -52,6 +52,10 @@ Route::get('/guru/delete/{id}',[GuruController::class,'delete']);
 Route::get('/guru/import',[GuruController::class,'import']);
 Route::post('/guru/import',[GuruController::class,'importPro']);
 
-Route::get('/login', function () {
+Route::get('/login/admin', function () {
+    return view('auth.login');
+});
+
+Route::get('/login/guru', function () {
     return view('auth.login');
 });
