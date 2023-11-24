@@ -16,9 +16,9 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>NIP</th>
-                    <th>alamat</th>
+                    <th>Alamat</th>
                     <th>Jenis Kelamin</th>
-                    <th>username</th>
+                    <th>Username</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -26,7 +26,7 @@
                 @if (!$guru->isEmpty())
                     @foreach ($guru as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->nama_guru }}</td>
                             <td>{{ $item->nip }}</td>
                             <td>{{ $item->alamat }}</td>

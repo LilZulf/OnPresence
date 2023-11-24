@@ -81,7 +81,7 @@
                         </li>
 
                         <li class="sidebar-item  ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="/kelas" class='sidebar-link'>
                                 <i class="bi bi-building-fill"></i>
                                 <span>Kelas</span>
                             </a>
