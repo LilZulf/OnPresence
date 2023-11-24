@@ -41,7 +41,6 @@ return [
             'provider' => 'users',
         ],
         'guru' =>[
-            'redirectTo' => 'guru.home',
             'driver' => 'session',
             'provider' => 'guru',
         ]

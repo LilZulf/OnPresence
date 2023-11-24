@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <script src="assets/static/js/initTheme.js"></script>
+    {{-- <script src="{{asset('dist/assets/static/js/initTheme.js')}}"></script> --}}
     <div id="auth">
 
         <div class="row h-100">
@@ -38,24 +38,27 @@
                                     alt="Logo" style="width: 350px; height: auto;" srcset="">
                             </div>
                         </div>
-                        
+
                         {{-- <a href="/login">
                             <img src="{{ asset('dist/assets/compiled/png/logo.png') }}" class="img-fluid" alt="Logo"
                                 style="width: 200px; height: auto;" srcset="">
                         </a> --}}
                     </div>
-                    <h1 class="auth-title">Log in {{$currentPath == 'login/admin' ? 'Admin' : 'Guru'}}</h1>
+                    <h1 class="auth-title">Log in {{ $currentPath == 'login/admin' ? 'Admin' : 'Guru' }}</h1>
                     <p class="auth-subtitle mb-5">Mohon Masukkan email dan password anda</p>
 
-                    <form action="index.html">
+                    <form action="{{ url('/login') }}" method="POST">
+                        @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" placeholder="Email">
+                            <input type="email" class="form-control form-control-xl" name="email"
+                                placeholder="email">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" class="form-control form-control-xl" placeholder="Password">
+                            <input type="password" class="form-control form-control-xl" name="password"
+                                placeholder="password">
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
@@ -66,6 +69,8 @@
                                 Keep me logged in
                             </label>
                         </div>
+                        <input type="hidden" name="level"
+                            value="{{ $currentPath == 'login/admin' ? 'Admin' : 'Guru' }}">
                         <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                     </form>
                 </div>
@@ -78,6 +83,24 @@
         </div>
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+            });
+        @endif
+        @if (session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ session('error') }}',
+            });
+        @endif
+    </script>
 </body>
 
 </html>

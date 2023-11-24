@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\KelasController;
@@ -59,9 +60,7 @@ Route::post('/kelas/tambah',[KelasController::class,'create']);
 Route::get('/kelas/edit/{id}',[KelasController::class,'edit']);
 Route::put('/kelas/update/{id}',[KelasController::class,'editproses']);
 Route::get('/kelas/delete/{id}',[KelasController::class,'delete']);
-Route::get('/login/admin', function () {
-    return view('auth.login');
-});
-    return view('auth.login');
-Route::get('/login/guru', function () {
-});
+
+Route::get('/login/admin', [AuthController::class, 'loginAdmin']);
+Route::get('/login/guru', [AuthController::class, 'loginGuru']);
+Route::post('/login', [AuthController::class, 'login']);
