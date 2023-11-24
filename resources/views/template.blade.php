@@ -1,3 +1,6 @@
+@php
+    $currentPath = Request::path();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +19,7 @@
 </head>
 
 <body>
+
     <script src="{{ asset('dist/assets/static/js/initTheme.js') }}"></script>
     <div id="app">
         <div id="sidebar">
@@ -73,59 +77,59 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item active ">
+                        <li class="sidebar-item {{ $currentPath == 'dashboard' ? 'active' : '' }} ">
                             <a href="index.html" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item  ">
+                        <li class="sidebar-item {{ $currentPath == 'siswa' ? 'active' : '' }} ">
                             <a href="/siswa" class='sidebar-link'>
                                 <i class="bi bi-people-fill"></i>
                                 <span>Siswa</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item  ">
-                            <a href="/kelas" class='sidebar-link'>
+                        <li class="sidebar-item {{ $currentPath == 'kelas' ? 'active' : '' }} ">
+                            <a href="index.html" class='sidebar-link'>
                                 <i class="bi bi-building-fill"></i>
                                 <span>Kelas</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item  ">
+                        <li class="sidebar-item {{ $currentPath == 'jadwal' ? 'active' : '' }}  ">
                             <a href="index.html" class='sidebar-link'>
                                 <i class="bi bi-grid-3x3"></i>
                                 <span>Jadwal</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item  ">
+                        <li class="sidebar-item {{ $currentPath == 'matpel' ? 'active' : '' }} ">
                             <a href="index.html" class='sidebar-link'>
                                 <i class="bi bi-lightbulb-fill"></i>
                                 <span>Mata Pelajaran</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item  ">
+                        <li class="sidebar-item {{ $currentPath == 'laporan' ? 'active' : '' }}  ">
                             <a href="index.html" class='sidebar-link'>
                                 <i class="bi bi-newspaper"></i>
                                 <span>Laporan</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item has-sub {{ in_array($currentPath, ['admin', 'guru']) ? 'active' : '' }}">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-pen-fill"></i>
                                 <span>Users</span>
                             </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item  ">
-                                    <a href="/admin" class="submenu-link">Admin</a>
+                            <ul class="submenu">
+                                <li class="submenu-item {{ $currentPath == 'admin' ? 'active' : '' }}">
+                                    <a href="{{ url('admin') }}" class="submenu-link">Admin</a>
                                 </li>
-                                <li class="submenu-item  ">
-                                    <a href="/guru" class="submenu-link">Guru</a>
+                                <li class="submenu-item {{ $currentPath == 'guru' ? 'active' : '' }}">
+                                    <a href="{{ url('guru') }}" class="submenu-link">Guru</a>
                                 </li>
                             </ul>
                         </li>

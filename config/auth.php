@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'guru' =>[
+            'redirectTo' => 'guru.home',
+            'driver' => 'session',
+            'provider' => 'guru',
+        ]
     ],
 
     /*
@@ -69,6 +74,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'guru' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Guru::class
+        ]
     ],
 
     /*

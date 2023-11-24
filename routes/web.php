@@ -59,3 +59,9 @@ Route::post('/kelas/tambah',[KelasController::class,'create']);
 Route::get('/kelas/edit/{id}',[KelasController::class,'edit']);
 Route::put('/kelas/update/{id}',[KelasController::class,'editproses']);
 Route::get('/kelas/delete/{id}',[KelasController::class,'delete']);
+Route::get('/login/admin', function () {
+    return view('auth.login');
+});
+    return view('auth.login');
+Route::get('/login/guru', function () {
+});
