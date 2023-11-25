@@ -38,9 +38,20 @@ class AuthController extends Controller
             return redirect()->intended('/siswa');
         }
 
-        return redirect('/login/'.$request->level)->withErrors([
+        return redirect('/login/' . $request->level)->withErrors([
             'email' => 'Kombinasi salah',
         ])->withInput($request->only('email'));
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/login/guru');
     }
 
 }

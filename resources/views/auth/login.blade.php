@@ -73,6 +73,18 @@
                             value="{{ $currentPath == 'login/admin' ? 'admin' : 'guru' }}">
                         <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                     </form>
+                    <div class="text-center mt-5 text-lg fs-4">
+                        @if ($currentPath == 'login/guru')
+                            <p class="text-gray-600">Masuk Sebagai Admin? <a href="/login/admin" class="font-bold">
+                                    Login Admin</a>.
+                            </p>
+                        @else
+                            <p class="text-gray-600">Masuk Sebagai guru? <a href="/login/guru" class="font-bold">
+                                    Login guru</a>.
+                            </p>
+                        @endif
+
+                    </div>
                 </div>
             </div>
             <div class="col-lg-7 d-none d-lg-block">
