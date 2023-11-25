@@ -35,6 +35,7 @@ class AuthController extends Controller
 
         if (Auth::guard($guard)->attempt($credentials)) {
             $request->session()->regenerate();
+            dd($guard);
             return redirect()->intended('/siswa');
         }
 
