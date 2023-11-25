@@ -72,12 +72,6 @@ Route::get('/mapel/edit/{id}',[MataPelajaranController::class,'edit']);
 Route::put('/mapel/update/{id}',[MataPelajaranController::class,'editproses']);
 Route::get('/mapel/delete/{id}',[MataPelajaranController::class,'delete']);
 
-Route::get('/login/admin', function () {
-    return view('auth.login');
-});
-    return view('auth.login');
-Route::get('/login/guru', function () {
-});
 Route::get('/login/admin', [AuthController::class, 'loginAdmin']);
 Route::get('/login/guru', [AuthController::class, 'loginGuru']);
 Route::post('/login', [AuthController::class, 'login']);
