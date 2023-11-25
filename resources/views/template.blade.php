@@ -1,5 +1,7 @@
 @php
+    use Illuminate\Support\Facades\Auth;
     $currentPath = Request::path();
+    $user = Auth::user();
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -75,65 +77,90 @@
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
-                        <li class="sidebar-title">Menu</li>
+                        @if ($user->nip)
+                            <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item {{ $currentPath == 'dashboard' ? 'active' : '' }} ">
-                            <a href="index.html" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
+                            <li class="sidebar-item {{ $currentPath == 'dashboard' ? 'active' : '' }} ">
+                                <a href="#" class='sidebar-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
 
-                        <li class="sidebar-item {{ $currentPath == 'siswa' ? 'active' : '' }} ">
-                            <a href="/siswa" class='sidebar-link'>
-                                <i class="bi bi-people-fill"></i>
-                                <span>Siswa</span>
-                            </a>
-                        </li>
+                            <li class="sidebar-item {{ $currentPath == 'absen' ? 'active' : '' }} ">
+                                <a href="/absen" class='sidebar-link'>
+                                    <i class="bi bi-people-fill"></i>
+                                    <span>absen</span>
+                                </a>
+                            </li>
 
-                        <li class="sidebar-item {{ $currentPath == 'kelas' ? 'active' : '' }} ">
-                            <a href="/kelas" class='sidebar-link'>
-                                <i class="bi bi-building-fill"></i>
-                                <span>Kelas</span>
-                            </a>
-                        </li>
+                            <li class="sidebar-item {{ $currentPath == 'jadwal' ? 'active' : '' }}  ">
+                                <a href="/jadwal" class='sidebar-link'>
+                                    <i class="bi bi-grid-3x3"></i>
+                                    <span>Jadwal</span>
+                                </a>
+                            </li>
+                        @else
+                            <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item {{ $currentPath == 'jadwal' ? 'active' : '' }}  ">
-                            <a href="/jadwal" class='sidebar-link'>
-                                <i class="bi bi-grid-3x3"></i>
-                                <span>Jadwal</span>
-                            </a>
-                        </li>
+                            <li class="sidebar-item {{ $currentPath == 'dashboard' ? 'active' : '' }} ">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
 
-                        <li class="sidebar-item {{ $currentPath == 'mapel' ? 'active' : '' }} ">
-                            <a href="/mapel" class='sidebar-link'>
-                                <i class="bi bi-lightbulb-fill"></i>
-                                <span>Mata Pelajaran</span>
-                            </a>
-                        </li>
+                            <li class="sidebar-item {{ $currentPath == 'siswa' ? 'active' : '' }} ">
+                                <a href="/siswa" class='sidebar-link'>
+                                    <i class="bi bi-people-fill"></i>
+                                    <span>Siswa</span>
+                                </a>
+                            </li>
 
-                        <li class="sidebar-item {{ $currentPath == 'laporan' ? 'active' : '' }}  ">
-                            <a href="index.html" class='sidebar-link'>
-                                <i class="bi bi-newspaper"></i>
-                                <span>Laporan</span>
-                            </a>
-                        </li>
+                            <li class="sidebar-item {{ $currentPath == 'kelas' ? 'active' : '' }} ">
+                                <a href="/kelas" class='sidebar-link'>
+                                    <i class="bi bi-building-fill"></i>
+                                    <span>Kelas</span>
+                                </a>
+                            </li>
 
-                        <li
-                            class="sidebar-item has-sub {{ in_array($currentPath, ['admin', 'guru']) ? 'active' : '' }}">
-                            <a href="#" class='sidebar-link'>
-                                <i class="bi bi-pen-fill"></i>
-                                <span>Users</span>
-                            </a>
-                            <ul class="submenu">
-                                <li class="submenu-item {{ $currentPath == 'admin' ? 'active' : '' }}">
-                                    <a href="{{ url('admin') }}" class="submenu-link">Admin</a>
-                                </li>
-                                <li class="submenu-item {{ $currentPath == 'guru' ? 'active' : '' }}">
-                                    <a href="{{ url('guru') }}" class="submenu-link">Guru</a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li class="sidebar-item {{ $currentPath == 'jadwal' ? 'active' : '' }}  ">
+                                <a href="/jadwal" class='sidebar-link'>
+                                    <i class="bi bi-grid-3x3"></i>
+                                    <span>Jadwal</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item {{ $currentPath == 'mapel' ? 'active' : '' }} ">
+                                <a href="/mapel" class='sidebar-link'>
+                                    <i class="bi bi-lightbulb-fill"></i>
+                                    <span>Mata Pelajaran</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item {{ $currentPath == 'laporan' ? 'active' : '' }}  ">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-newspaper"></i>
+                                    <span>Laporan</span>
+                                </a>
+                            </li>
+
+                            <li
+                                class="sidebar-item has-sub {{ in_array($currentPath, ['admin', 'guru']) ? 'active' : '' }}">
+                                <a href="#" class='sidebar-link'>
+                                    <i class="bi bi-pen-fill"></i>
+                                    <span>Users</span>
+                                </a>
+                                <ul class="submenu">
+                                    <li class="submenu-item {{ $currentPath == 'admin' ? 'active' : '' }}">
+                                        <a href="{{ url('admin') }}" class="submenu-link">Admin</a>
+                                    </li>
+                                    <li class="submenu-item {{ $currentPath == 'guru' ? 'active' : '' }}">
+                                        <a href="{{ url('guru') }}" class="submenu-link">Guru</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -158,8 +185,9 @@
                                 <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="user-menu d-flex">
                                         <div class="user-name text-end me-3">
-                                            <h6 class="mb-0 text-gray-600">John Ducky</h6>
-                                            <p class="mb-0 text-sm text-gray-600">Administrator</p>
+                                            <h6 class="mb-0 text-gray-600">{{ $user->email }}</h6>
+                                            <p class="mb-0 text-sm text-gray-600">{{ $user->nip ? 'Guru' : 'Admin' }}
+                                            </p>
                                         </div>
                                         <div class="user-img d-flex align-items-center">
                                             <div class="avatar avatar-md">
@@ -171,22 +199,14 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
                                     style="min-width: 11rem;">
                                     <li>
-                                        <h6 class="dropdown-header">Hello, John!</h6>
+                                        <h6 class="dropdown-header">{{ $user->email }}</h6>
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><i
-                                                class="icon-mid bi bi-person me-2"></i> My
-                                            Profile</a></li>
-                                    <li><a class="dropdown-item" href="#"><i
-                                                class="icon-mid bi bi-gear me-2"></i>
-                                            Settings</a></li>
-                                    <li><a class="dropdown-item" href="#"><i
-                                                class="icon-mid bi bi-wallet me-2"></i>
-                                            Wallet</a></li>
+                                    <hr class="dropdown-divider">
                                     <li>
-                                        <hr class="dropdown-divider">
+                                        <a class="dropdown-item" href="#" id="logout-link">
+                                            <i class="icon-mid bi bi-box-arrow-left me-2"></i> Logout
+                                        </a>
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><i
-                                                class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -237,6 +257,18 @@
     <script src="{{ asset('dist/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 
     <script src="{{ asset('dist/assets/compiled/js/app.js') }}"></script>
+    <script>
+        document.getElementById('logout-link').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            var confirmation = confirm('Anda yakin untuk logout?');
+
+            if (confirmation) {
+                // Redirect to the logout route
+                window.location.href = '/logout';
+            }
+        });
+    </script>
     @yield('script')
 
 </body>
