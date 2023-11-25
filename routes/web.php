@@ -38,6 +38,9 @@ Route::post('/jadwal/tambah',[JadwalController::class,'create']);
 Route::get('/jadwal/edit/{id}',[JadwalController::class,'edit']);
 Route::put('/jadwal/edit/{id}',[JadwalController::class,'editproses']);
 Route::get('/jadwal/delete/{id}',[JadwalController::class,'delete']);
+
+
+
 Route::get('/admin',[UsersController::class,'index']);
 Route::get('/admin/tambah',[UsersController::class,'tambah']);
 Route::post('/admin/tambah',[UsersController::class,'create']);

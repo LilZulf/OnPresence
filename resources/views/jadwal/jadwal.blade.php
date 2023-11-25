@@ -13,40 +13,38 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Hari</th>
-                    <th>Waktu Mulai</th>
-                    <th>Waktu selesai</th>
                     <th>Guru Pengajar</th>
+                    <th>Pelajaran</th>
                     <th>Kelas</th>
+                    <th>Hari</th>
+                    <th>Jam</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                {{-- @forelse ($siswa as $item)
+                @foreach ($jadwals as $jadwal)
                     <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->nama }}</td>
-                        <td>{{ $item->nisn }}</td>
-                        <td>{{ $item->id_kelas }}</td>
-                        <td>{{ $item->jenis_kelamin }}</td>
-                        <td><a class="btn btn-Warning" href="/siswa/edit/{{ $item->id }}" role="button">Ubah</a> <a
-                                class="btn btn-dangger" href="/siswa/delete/{{ $item->id }}" role="button">Hapus</a>
+                        <td>{{ $jadwal->id }}</td>
+                        <td>{{ $jadwal->guru->nama_guru }}</td>
+                        <td>{{ $jadwal->pelajaran->nama_mapel }}</td>
+                        <td>{{ $jadwal->kelas->nama_kelas }}</td>
+                        <td>{{ $jadwal->hari }}</td>
+                        <td>{{ $jadwal->jam }}</td>
+                        <td><a class="btn btn-warning" href="/jadwal/edit/{{ $jadwal->id }}" role="button">Ubah</a> <a
+                                class="btn btn-danger" href="/jadwal/delete/{{ $jadwal->id }}" role="button">Hapus</a>
                         </td>
                     </tr>
-                @empty
-                    <tr>
-                        <td>Kosong</td>
-                    </tr>
-                @endforelse --}}
+                @endforeach
+
             </tbody>
             <tfoot>
-                <tr>
-                    <th>No</th>
-                    <th>Hari</th>
-                    <th>Waktu Mulai</th>
-                    <th>Waktu selesai</th>
-                    <th>Guru Pengajar</th>
-                    <th>Kelas</th>
-                </tr>
+                <th>No</th>
+                <th>Guru Pengajar</th>
+                <th>Pelajaran</th>
+                <th>Kelas</th>
+                <th>Hari</th>
+                <th>Jam</th>
+                <th>Action</th>
             </tfoot>
         </table>
     </div>
@@ -55,7 +53,43 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         new DataTable('#example');
+    </script>
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+            });
+        @endif
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            @if (session('errors'))
+                var errors = @json(session('errors')->all());
+                console.log(errors);
+                var errorMessage = errors;
+                var indonesianMessages = {
+                    'The jam field is required.': 'Jam Harus Di Isi',
+                };
+                for (var key in indonesianMessages) {
+                    if (indonesianMessages.hasOwnProperty(key) && errorMessage.includes(key)) {
+                        errorMessage = indonesianMessages[key];
+                        break;
+                    }
+                }
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: errorMessage,
+                });
+            @endif
+        });
     </script>
 @endsection

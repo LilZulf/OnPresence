@@ -13,17 +13,25 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="helperText">Nama Guru</label>
-                                <div>
-                                    <select class="choices form-select" name="guru">
-                                        <option value="senin">Bu Salmah</option>
-                                        <option value="selasa">Pak Andi</option>
-                                        <option value="rabu">Pak Agus</option>
-                                    </select>
-                                </div>
+                                <select class="choices form-select" name="guru">
+                                    @foreach ($guru as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nama_guru }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="helpInputTop">Jam ke -</label>
                                 <input type="text" class="form-control" name="jam" id="helpInputTop">
+                            </div>
+                            <div class="form-group">
+                                <label for="helperText">Kelas</label>
+                                <div>
+                                    <select class="choices form-select" name="kelas">
+                                        @foreach ($kelas as $item)
+                                            <option value="{{ $item->id_kelas }}">{{ $item->nama_kelas }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
                         </div>
@@ -32,12 +40,12 @@
                                 <label for="helperText">Hari</label>
                                 <div>
                                     <select class="choices form-select" name="hari">
-                                        <option value="senin">Senin</option>
-                                        <option value="selasa">Selasa</option>
-                                        <option value="rabu">Rabu</option>
-                                        <option value="kamis">Kamis</option>
-                                        <option value="jumat">Jum'at</option>
-                                        <option value="sabtu">Sabtu</option>
+                                        <option value="Senin">Senin</option>
+                                        <option value="Selasa">Selasa</option>
+                                        <option value="Rabu">Rabu</option>
+                                        <option value="Kamis">Kamis</option>
+                                        <option value="Jumat">Jum'at</option>
+                                        <option value="Sabtu">Sabtu</option>
                                     </select>
                                 </div>
                             </div>
@@ -45,12 +53,13 @@
                                 <label for="helperText">Mata Pelajaran</label>
                                 <div>
                                     <select class="choices form-select" name="pelajaran">
-                                        <option value="senin">IPA</option>
-                                        <option value="selasa">IPS</option>
-                                        <option value="rabu">Agama</option>
+                                        @foreach ($mapel as $item)
+                                            <option value="{{ $item->id_mapel }}">{{ $item->nama_mapel }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
+
 
 
                         </div>

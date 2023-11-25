@@ -12,11 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mata_pelajarans', function (Blueprint $table) {
-            $table->bigInteger('id_mapel')->primary()->autoIncrement();
-            $table->string('kode_mapel');
-            $table->string('nama_mapel');
-            $table->timestamps();
-        });
+    $table->id('id_mapel'); // Gunakan id() untuk membuat primary key dengan auto-increment
+    $table->string('kode_mapel');
+    $table->string('nama_mapel');
+    $table->timestamps();
+});
+
     }
 
     /**
