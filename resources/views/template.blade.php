@@ -105,7 +105,7 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item {{ $currentPath == 'matpel' ? 'active' : '' }} ">
+                        <li class="sidebar-item {{ $currentPath == 'mapel' ? 'active' : '' }} ">
                             <a href="/mapel" class='sidebar-link'>
                                 <i class="bi bi-lightbulb-fill"></i>
                                 <span>Mata Pelajaran</span>
