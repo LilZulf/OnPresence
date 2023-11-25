@@ -7,6 +7,7 @@ use App\Models\Guru;
 use Illuminate\Http\Request;
 use Excel;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class GuruController extends Controller
 {
@@ -45,7 +46,7 @@ class GuruController extends Controller
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
             'email' => $request->email,
-            'password' => $request->password
+            'password' => Hash::make($request->password)
         ]);
         return redirect('/guru');
     }

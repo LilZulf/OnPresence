@@ -31,16 +31,15 @@ class AuthController extends Controller
         }
 
         $credentials = $request->only('email', 'password');
-        $guard = $request->level == 'Admin' ? 'web' : 'guru';
+        $guard = $request->level == 'admin' ? 'web' : 'guru';
 
         if (Auth::guard($guard)->attempt($credentials)) {
             $request->session()->regenerate();
-            dd($guard);
             return redirect()->intended('/siswa');
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+        return redirect('/login/'.$request->level)->withErrors([
+            'email' => 'Kombinasi salah',
         ])->withInput($request->only('email'));
     }
 

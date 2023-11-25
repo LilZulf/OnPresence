@@ -70,7 +70,7 @@
                             </label>
                         </div>
                         <input type="hidden" name="level"
-                            value="{{ $currentPath == 'login/admin' ? 'Admin' : 'Guru' }}">
+                            value="{{ $currentPath == 'login/admin' ? 'admin' : 'guru' }}">
                         <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                     </form>
                 </div>
