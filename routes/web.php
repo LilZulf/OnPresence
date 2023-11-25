@@ -5,6 +5,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MataPelajaranController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +20,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('template');
-});
+// Route::get('/', function () {
+//     return view('template');
+// });
+
+Route::get('/dashboard',[DashboardController::class,'index']);
+
 
 Route::get('/siswa',[SiswaController::class,'index']);
 Route::get('/siswa/tambah',[SiswaController::class,'tambah']);
@@ -38,8 +42,6 @@ Route::post('/jadwal/tambah',[JadwalController::class,'create']);
 Route::get('/jadwal/edit/{id}',[JadwalController::class,'edit']);
 Route::put('/jadwal/edit/{id}',[JadwalController::class,'editproses']);
 Route::get('/jadwal/delete/{id}',[JadwalController::class,'delete']);
-
-
 
 Route::get('/admin',[UsersController::class,'index']);
 Route::get('/admin/tambah',[UsersController::class,'tambah']);
