@@ -16,7 +16,7 @@ class AuthController extends Controller
             return redirect('/siswa');
         }
         else if(Auth::guard('guru')->check()){
-            return redirect('/absen');
+            return redirect('/guru/absen');
         }
         return view('auth.login');
     }
@@ -26,7 +26,7 @@ class AuthController extends Controller
             return redirect('/siswa');
         }
         else if(Auth::guard('guru')->check()){
-            return redirect('/absen');
+            return redirect('/guru/absen');
         }
         return view('auth.login');
     }

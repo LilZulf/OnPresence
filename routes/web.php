@@ -25,12 +25,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('template');
 });
-Route::middleware(['auth:guru'])->group(function () {
+Route::middleware(['auth:guru'])->prefix('guru')->group(function () {
     Route::get('/absen', [AbsenController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 });
 
-Route::get('/dashboard',[DashboardController::class,'index']);
+// Other routes outside the 'auth:guru' middleware group
+
+
 Route::middleware(['auth:web'])->group(function () {
+    Route::get('/dashboard',[DashboardController::class,'index']);
     Route::get('/siswa', [SiswaController::class, 'index']);
     Route::get('/siswa/tambah', [SiswaController::class, 'tambah']);
     Route::post('/siswa/tambah', [SiswaController::class, 'create']);

@@ -80,17 +80,17 @@
                         @if ($user->nip)
                             <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item {{ $currentPath == 'dashboard' ? 'active' : '' }} ">
-                            <a href="/dashboard" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
+                            <li class="sidebar-item {{ $currentPath == 'guru/dashboard' ? 'active' : '' }} ">
+                                <a href="/guru/dashboard" class='sidebar-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
 
-                            <li class="sidebar-item {{ $currentPath == 'absen' ? 'active' : '' }} ">
-                                <a href="/absen" class='sidebar-link'>
+                            <li class="sidebar-item {{ $currentPath == 'guru/absen' ? 'active' : '' }} ">
+                                <a href="/guru/absen" class='sidebar-link'>
                                     <i class="bi bi-people-fill"></i>
-                                    <span>absen</span>
+                                    <span>Absen</span>
                                 </a>
                             </li>
 
@@ -103,12 +103,12 @@
                         @else
                             <li class="sidebar-title">Menu</li>
 
-                             <li class="sidebar-item {{ $currentPath == 'dashboard' ? 'active' : '' }} ">
-                            <a href="/dashboard" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
+                            <li class="sidebar-item {{ $currentPath == 'dashboard' ? 'active' : '' }} ">
+                                <a href="/dashboard" class='sidebar-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
 
                             <li class="sidebar-item {{ $currentPath == 'siswa' ? 'active' : '' }} ">
                                 <a href="/siswa" class='sidebar-link'>
@@ -186,7 +186,7 @@
                                     <div class="user-menu d-flex">
                                         <div class="user-name text-end me-3">
                                             <h6 class="mb-0 text-gray-600">{{ $user->email }}</h6>
-                                            <p class="mb-0 text-sm text-gray-600">{{ $user->nip ? 'Guru' : 'Admin' }}
+                                            <p class="mb-0 text-sm text-gray-600">{{ $user->nip ? $user->nip : 'Admin' }}
                                             </p>
                                         </div>
                                         <div class="user-img d-flex align-items-center">
