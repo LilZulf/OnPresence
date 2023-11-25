@@ -8,42 +8,36 @@
 @endsection
 @section('content')
     <div class="table-responsive mt-3">
-        <a class="btn btn-primary mb-4" href="/jadwal/tambah" role="button">Tambah Absen</a>
+        <a class="btn btn-primary mb-4" href="/guru/absen/tambah" role="button">Tambah Absen</a>
         <table id="example" class="table table-striped table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>Guru Pengajar</th>
                     <th>Pelajaran</th>
-                    <th>Kelas</th>
-                    <th>Hari</th>
-                    <th>Jam</th>
+                    <th>Materi</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                {{-- @foreach ($jadwals as $jadwal)
+                @foreach ($jadwal as $item)
                     <tr>
-                        <td>{{ $jadwal->id }}</td>
-                        <td>{{ $jadwal->guru->nama_guru }}</td>
-                        <td>{{ $jadwal->pelajaran->nama_mapel }}</td>
-                        <td>{{ $jadwal->kelas->nama_kelas }}</td>
-                        <td>{{ $jadwal->hari }}</td>
-                        <td>{{ $jadwal->jam }}</td>
-                        <td><a class="btn btn-warning" href="/jadwal/edit/{{ $jadwal->id }}" role="button">Ubah</a> <a
-                                class="btn btn-danger" href="/jadwal/delete/{{ $jadwal->id }}" role="button">Hapus</a>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->guru->nama_guru }}</td>
+                        <td>{{ $item->hari . ' / ' . 'Kelas ' . $item->nama_kelas . ' / ' . $item->nama_mapel }}</td>
+                        <td>{{ $item->materi }}</td>
+                        <td><a class="btn btn-warning" href="/guru/absen/edit/{{ $item->id }}" role="button">Ubah</a>
+                            <a class="btn btn-danger" href="/guru/absen/delete/{{ $item->id }}" role="button">Hapus</a>
                         </td>
                     </tr>
-                @endforeach --}}
+                @endforeach
 
             </tbody>
             <tfoot>
                 <th>No</th>
                 <th>Guru Pengajar</th>
                 <th>Pelajaran</th>
-                <th>Kelas</th>
-                <th>Hari</th>
-                <th>Jam</th>
+                <th>Materi</th>
                 <th>Action</th>
             </tfoot>
         </table>
