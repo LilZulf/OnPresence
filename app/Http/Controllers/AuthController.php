@@ -50,7 +50,7 @@ class AuthController extends Controller
             if ($guard == 'web') {
                 return redirect()->intended('/siswa');
             } else {
-                return redirect()->intended('/absen');
+                return redirect()->intended('/guru/absen');
             }
 
         }
