@@ -7,6 +7,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MataPelajaranController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ Route::middleware(['auth:guru'])->group(function () {
     Route::get('/absen', [AbsenController::class, 'index']);
 });
 
+Route::get('/dashboard',[DashboardController::class,'index']);
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/siswa', [SiswaController::class, 'index']);
     Route::get('/siswa/tambah', [SiswaController::class, 'tambah']);
