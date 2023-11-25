@@ -59,12 +59,5 @@
                 text: '{{ session('success') }}',
             });
         @endif
-        // @if (session('error'))
-        //     Swal.fire({
-        //         icon: 'error',
-        //         title: 'Gagal',
-        //         text: '{{ session('error') }}',
-        //     });
-        // @endif
     </script>
 @endsection

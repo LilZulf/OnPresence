@@ -3,66 +3,87 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
+use App\Models\Kelas;
+use App\Models\Guru;
+use App\Models\MataPelajaran;
 use Illuminate\Http\Request;
 use SebastianBergmann\Type\VoidType;
+use Illuminate\Support\Facades\Validator;
 
 
 class JadwalController extends Controller
 {
     public function index() {
-        // $siswa = Siswa::paginate(10);
-        return view('jadwal.jadwal');
+        $jadwals = Jadwal::with(['guru', 'pelajaran','kelas'])->get();
+        return view('jadwal.jadwal', ['jadwals' => $jadwals]);
     }
     public function tambah()  {
-        return view('jadwal/jadwalTambah');
+        $guru = Guru::all();
+        $kelas = Kelas::all();
+        $mapel = MataPelajaran::all();
+        return view('jadwal/jadwalTambah', ['guru' => $guru, 'kelas' => $kelas, 'mapel' => $mapel]);
+
     }
     public function create(Request $request)  {
-        $this->validate($request,[
-            'mulai' => 'required',
-            'selesai' => 'required',
-            'hari' => 'required',
-            'pengajar' => 'required',
-            'kelas' => 'required']);
+        $validator = Validator::make($request->all(), [
+            'guru' => 'required|string|max:255',
+            'hari' => 'required|string|max:255',
+            'jam' => 'required|string|max:255',
+            'kelas' => 'required',
+            'pelajaran' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return redirect('/jadwal/tambah')->withErrors($validator)->withInput();
+        }
+
 
         Jadwal::create([
-            'mulai' => $request->mulai,
-            'selesai' => $request->selesai,
+            'id_guru' => $request->guru,
             'hari' => $request->hari,
-            'pengajar' => $request->pengajar,
-            'kelas' => $request->kelas
+            'jam' => $request->jam,
+            'id_pelajaran' => $request->pelajaran,
+            'id_kelas' => $request->kelas
         ]);
-        return redirect('/jadwal');
+        return redirect('/jadwal')->with('success', "Berhasil menambahkan Jadwal");
     }
-    public function edit($id)  {
-       $siswa = siswa::where('id','=', $id)->get()->first();
-    //    dd($siswa);
-       return view('jadwal/jadwalEdit',['siswa'=> $siswa]);
+    public function edit($id) {
+        $jadwal = Jadwal::with(['guru', 'pelajaran','kelas'])->find($id);
+        $guruList = Guru::all();
+        $pelajaranList = MataPelajaran::all();
+        $kelasList = Kelas::all();
+        return view('jadwal/jadwalEdit', ['jadwal' => $jadwal, 'guruList' => $guruList, 'pelajaranList' => $pelajaranList,'kelasList' => $kelasList]);
     }
 
     public function editproses($id,Request $request){
-        $siswa = Siswa::find($id);
+        $jadwal= Jadwal::find($id);
 
-        $this->validate($request,[
-            'nama' => 'required',
-            'nisn' => 'required',
-            'id_kelas' => 'required',
-            'jenis_kelamin' => 'required']);
-
-        $siswa->update([
-            'nama' => $request->nama,
-            'nisn' => $request->nisn,
-            'id_kelas' => $request->id_kelas,
-            'jenis_kelamin' => $request->jenis_kelamin
+        $validator = Validator::make($request->all(), [
+            'guru' => 'required|string|max:255',
+            'hari' => 'required|string|max:255',
+            'jam' => 'required|string|max:255',
+            'kelas' => 'required',
+            'pelajaran' => 'required'
         ]);
-        return redirect('/siswa');
+
+        if ($validator->fails()) {
+            return redirect('/jadwal/tambah')->withErrors($validator)->withInput();
+        }
+        $jadwal->update([
+            'id_guru' => $request->guru,
+            'hari' => $request->hari,
+            'jam' => $request->jam,
+            'id_pelajaran' => $request->pelajaran,
+            'id_kelas' => $request->kelas
+        ]);
+        return redirect('/jadwal')->with('success', "Berhasil Mengupdate Jadwal");
     }
 
     public function delete($id)  {
-        $siswa =  Siswa::find($id);
+        $jadwal =  Jadwal::find($id);
 
-        $siswa->delete();
+        $jadwal->delete();
 
-        return redirect('/siswa');
+        return redirect('/jadwal')->with('success', "Berhasil Menghapus Jadwal");
         
     }
 }

@@ -99,7 +99,7 @@
                         </li>
 
                         <li class="sidebar-item {{ $currentPath == 'jadwal' ? 'active' : '' }}  ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="/jadwal" class='sidebar-link'>
                                 <i class="bi bi-grid-3x3"></i>
                                 <span>Jadwal</span>
                             </a>
@@ -119,7 +119,8 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item has-sub {{ in_array($currentPath, ['admin', 'guru']) ? 'active' : '' }}">
+                        <li
+                            class="sidebar-item has-sub {{ in_array($currentPath, ['admin', 'guru']) ? 'active' : '' }}">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-pen-fill"></i>
                                 <span>Users</span>
