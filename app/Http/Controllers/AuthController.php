@@ -12,10 +12,22 @@ class AuthController extends Controller
     //
     public function loginAdmin(Request $request)
     {
+        if(Auth::guard('web')->check()){
+            return redirect('/siswa');
+        }
+        else if(Auth::guard('guru')->check()){
+            return redirect('/absen');
+        }
         return view('auth.login');
     }
     public function loginGuru(Request $request)
     {
+        if(Auth::guard('web')->check()){
+            return redirect('/siswa');
+        }
+        else if(Auth::guard('guru')->check()){
+            return redirect('/absen');
+        }
         return view('auth.login');
     }
 
@@ -35,7 +47,12 @@ class AuthController extends Controller
 
         if (Auth::guard($guard)->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/siswa');
+            if ($guard == 'web') {
+                return redirect()->intended('/siswa');
+            } else {
+                return redirect()->intended('/absen');
+            }
+
         }
 
         return redirect('/login/' . $request->level)->withErrors([
@@ -46,12 +63,11 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect('/login/guru');
+        return redirect('login/guru');
     }
+
 
 }

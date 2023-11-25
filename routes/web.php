@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\SiswaController;
@@ -23,7 +24,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('template');
 });
-
+Route::middleware(['auth:guru'])->group(function () {
+    Route::get('/absen', [AbsenController::class, 'index']);
+});
 
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/siswa', [SiswaController::class, 'index']);
@@ -73,9 +76,8 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/mapel/delete/{id}', [MataPelajaranController::class, 'delete']);
 });
 
-
-
 Route::get('/login/admin', [AuthController::class, 'loginAdmin'])->name('login-admin');
 Route::get('/login/guru', [AuthController::class, 'loginGuru'])->name('login-guru');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
+
