@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\MataPelajaran;
 
+use SebastianBergmann\Type\VoidType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MataPelajaranController extends Controller
 {
@@ -19,15 +21,21 @@ class MataPelajaranController extends Controller
     }
 
     public function create(Request $request)  {
-        $this->validate($request,[
+        // Validasi input menggunakan Validator
+        $validator = Validator::make($request->all(), [
             'kode_mapel' => 'required|unique:mata_pelajarans',
-            'nama_mapel' => 'required']);
+            'nama_mapel' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/mapel/tambah')->withErrors($validator)->withInput();
+        }
 
         MataPelajaran::create([
-            'kode_mapel' => $request->kode_mapel,
-            'nama_mapel' => $request->nama_mapel
+             'kode_mapel' => $request->kode_mapel,
+             'nama_mapel' => $request->nama_mapel
         ]);
-        return redirect('/mapel');
+        return redirect('/mapel')->with('success', "Berhasil menambahkan Data Mata Pelajaran");
     }
 
     public function edit($id)  {
@@ -37,17 +45,26 @@ class MataPelajaranController extends Controller
     }
 
     public function editproses($id,Request $request){
+        // Validasi input menggunakan Validator
+        $validator = Validator::make($request->all(), [
+            'kode_mapel' => 'required|unique:mata_pelajarans',
+            'nama_mapel' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/mapel/edit/' .$id)->withErrors($validator)->withInput();
+        }
+
         $mapel = MataPelajaran::find($id);
-        
-        $this->validate($request,[
-            'kode_mapel' => 'required',
-            'nama_mapel' => 'required']);
+        // $this->validate($request,[
+        //     'kode_mapel' => 'required',
+        //     'nama_mapel' => 'required']);
 
         $mapel->update([
             'kode_mapel' => $request->kode_mapel,
             'nama_mapel' => $request->nama_mapel
         ]);
-        return redirect('/mapel');
+        return redirect('/mapel')->with('success', "Berhasil Mengupdate Data Mata Pelajaran");
     }
 
     public function delete($id)  {
@@ -55,6 +72,6 @@ class MataPelajaranController extends Controller
 
         $mapel->delete();
 
-        return redirect('/mapel');
+        return redirect('/mapel')->with('success', "Berhasil Menghapus Data Mata Pelajaran");
     }
 }
