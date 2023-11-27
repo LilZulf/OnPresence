@@ -53,12 +53,11 @@ class AbsenController extends Controller
     public function edit($id) {
         $guru = Auth::guard('guru')->user();
         $jadwal = Absen::join('jadwals', 'jadwals.id', '=', 'absens.id_jadwal')
-        ->join('mata_pelajarans', 'mata_pelajarans.id_mapel', '=', 'jadwals.id_pelajaran')
-        ->join('kelas','kelas.id_kelas', '=', 'jadwals.id_kelas')
-        ->get(['absens.*', 'mata_pelajarans.nama_mapel', 'kelas.nama_kelas','jadwals.hari'])->first();
-        // dd($jadwal->id_jadwal);
+            ->join('mata_pelajarans', 'mata_pelajarans.id_mapel', '=', 'jadwals.id_pelajaran')
+            ->join('kelas', 'kelas.id_kelas', '=', 'jadwals.id_kelas')
+            ->find($id, ['absens.*', 'mata_pelajarans.nama_mapel', 'kelas.nama_kelas', 'jadwals.hari']);
     
-        return view('absen.absenEdit', ['guru'=>$guru,'jadwal' => $jadwal]);
+        return view('absen.absenEdit', ['guru' => $guru, 'jadwal' => $jadwal]);
     }
     
     

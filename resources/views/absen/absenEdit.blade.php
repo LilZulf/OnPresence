@@ -5,9 +5,8 @@
             <div class="card-header">
                 <h4 class="card-title">Edit Absen</h4>
             </div>
-
             <div class="card-body">
-                <form action="{{ url('guru/absen/edit/' . $jadwal->id_jadwal) }}" method="POST">
+                <form action="{{ url('guru/absen/edit/' . $jadwal->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row">
@@ -16,34 +15,20 @@
                                 value="{{ $jadwal->id_guru }}" readonly hidden>
                             <div class="form-group">
                                 <label for="helpInputTop">Jadwal</label>
-                                <input type="text" class="form-control" name="jadwal" id="helpInputTop"
+                                <input type="text" class="form-control btn btn-secondary" name="jadwal"
+                                    id="helpInputTop"
                                     value="{{ $jadwal->hari . ' / ' . 'Kelas ' . $jadwal->nama_kelas . ' / ' . $jadwal->nama_mapel }}"
                                     readonly>
                                 <input type="hidden" name="id_jadwal" value="{{ $jadwal->id_jadwal }}">
                             </div>
 
+
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="helpInputTop">Materi</label>
                                 <input type="text" class="form-control" name="materi" id="helpInputTop"
                                     value="{{ $jadwal->materi }}">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div>
-                                <div class="form-group">
-                                    <label for="helperText">Hari</label>
-                                    <div>
-                                        <select class="choices form-select" name="hari" id="hariDropdown" disabled>
-                                            <option value="Senin">Senin</option>
-                                            <option value="Selasa">Selasa</option>
-                                            <option value="Rabu">Rabu</option>
-                                            <option value="Kamis">Kamis</option>
-                                            <option value="Jumat">Jum'at</option>
-                                            <option value="Sabtu">Sabtu</option>
-                                            <option value="Minggu">Minggu</option>
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
 
                         </div>
