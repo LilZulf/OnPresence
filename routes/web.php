@@ -27,6 +27,11 @@ Route::get('/', function () {
 });
 Route::middleware(['auth:guru'])->prefix('guru')->group(function () {
     Route::get('/absen', [AbsenController::class, 'index']);
+    Route::get('/absen/tambah', [AbsenController::class, 'tambah']);
+    Route::post('/absen/tambah', [AbsenController::class, 'create']);
+    Route::get('/absen/edit/{id}', [AbsenController::class, 'edit']);
+    Route::put('/absen/edit/{id}', [AbsenController::class, 'editproses']);
+    Route::get('/absen/delete/{id}', [AbsenController::class, 'delete']);
     Route::get('/dashboard', [DashboardController::class, 'index']);
 });
 

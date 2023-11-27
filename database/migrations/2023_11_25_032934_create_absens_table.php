@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('absens', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_guru');
+            $table->integer('id_jadwal');
+            $table->string('materi');
             $table->timestamps();
         });
     }
