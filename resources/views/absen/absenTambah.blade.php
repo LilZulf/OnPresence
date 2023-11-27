@@ -17,7 +17,7 @@
                                 <label for="helperText">Jadwal</label>
                                 <select class="form-control choices form-select" name="jadwal">
                                     @foreach ($jadwal as $item)
-                                        <option value="{{ $item->id}}">
+                                        <option value="{{ $item->id }}">
                                             {{ $item->hari . ' / ' . 'Kelas ' . $item->nama_kelas . ' / ' . $item->nama_mapel }}
                                         </option>
                                     @endforeach
@@ -30,25 +30,6 @@
                                 <input type="text" class="form-control" name="materi" id="helpInputTop">
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div>
-                                <div class="form-group">
-                                    <label for="helperText">Hari</label>
-                                    <div>
-                                        <select class="choices form-select" name="hari" id="hariDropdown" disabled>
-                                            <option value="Senin">Senin</option>
-                                            <option value="Selasa">Selasa</option>
-                                            <option value="Rabu">Rabu</option>
-                                            <option value="Kamis">Kamis</option>
-                                            <option value="Jumat">Jum'at</option>
-                                            <option value="Sabtu">Sabtu</option>
-                                            <option value="Minggu">Minggu</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
                     </div>
             </div>
             <button class="btn btn-success" type="submit">Tambah</button>
@@ -58,20 +39,6 @@
 @endsection
 
 @section('script')
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var today = new Date().toLocaleString('id-id', {
-                weekday: 'long'
-            });
-            var hariDropdown = document.getElementById("hariDropdown");
-            for (var i = 0; i < hariDropdown.options.length; i++) {
-                if (hariDropdown.options[i].text === today) {
-                    hariDropdown.selectedIndex = i;
-                    break;
-                }
-            }
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
