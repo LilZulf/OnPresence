@@ -7,33 +7,26 @@
             </div>
 
             <div class="card-body">
-                <form action="{{ url('guru/absen/edit/' . $guru->id_guru) }}" method="POST">
+                <form action="{{ url('guru/absen/edit/' . $jadwal->id_jadwal) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row">
                         <div class="col-md-6">
                             <input type="text" class="form-control" name="guru" id="helpInputTop"
-                                value="{{ $guru->id_guru }}" readonly hidden>
+                                value="{{ $jadwal->id_guru }}" readonly hidden>
                             <div class="form-group">
-                                <label for="helperText">Jadwal</label>
-                                <select class="form-control choices form-select" name="jadwal" disabled>
-                                    @foreach ($jadwal as $item)
-                                        <option value="{{ $item->id }}">
-                                            {{ $item->hari . ' / ' . 'Kelas ' . $item->nama_kelas . ' / ' . $item->nama_mapel }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <label for="helpInputTop">Jadwal</label>
+                                <input type="text" class="form-control" name="jadwal" id="helpInputTop"
+                                    value="{{ $jadwal->hari . ' / ' . 'Kelas ' . $jadwal->nama_kelas . ' / ' . $jadwal->nama_mapel }}"
+                                    readonly>
+                                <input type="hidden" name="id_jadwal" value="{{ $jadwal->id_jadwal }}">
                             </div>
 
-
-                            @foreach ($jadwal as $item)
-                                <div class="form-group">
-                                    <label for="helpInputTop">Materi</label>
-                                    <input type="text" class="form-control" name="materi" id="helpInputTop"
-                                        value="{{ $item['materi'] }}">
-                                </div>
-                            @endforeach
-
+                            <div class="form-group">
+                                <label for="helpInputTop">Materi</label>
+                                <input type="text" class="form-control" name="materi" id="helpInputTop"
+                                    value="{{ $jadwal->materi }}">
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div>

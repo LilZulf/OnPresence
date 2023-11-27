@@ -17,7 +17,7 @@ class AbsenController extends Controller
         $jadwal = Jadwal::join('kelas', 'kelas.id_kelas', '=', 'jadwals.id_kelas')
         ->join('mata_pelajarans', 'mata_pelajarans.id_mapel', '=', 'jadwals.id_pelajaran')
         ->join('absens', 'absens.id_jadwal', '=', 'jadwals.id')
-        ->get(['absens.*', 'mata_pelajarans.nama_mapel', 'kelas.nama_kelas']);
+        ->get(['absens.*', 'mata_pelajarans.nama_mapel', 'kelas.nama_kelas','jadwals.hari']);
     
     return view('absen.absen', ['jadwal' => $jadwal]);
     
@@ -52,10 +52,11 @@ class AbsenController extends Controller
 
     public function edit($id) {
         $guru = Auth::guard('guru')->user();
-        $jadwal = Jadwal::join('kelas', 'kelas.id_kelas', '=', 'jadwals.id_kelas')
+        $jadwal = Absen::join('jadwals', 'jadwals.id', '=', 'absens.id_jadwal')
         ->join('mata_pelajarans', 'mata_pelajarans.id_mapel', '=', 'jadwals.id_pelajaran')
-        ->join('absens', 'absens.id_jadwal', '=', 'jadwals.id')
-        ->get(['absens.*', 'mata_pelajarans.nama_mapel', 'kelas.nama_kelas']);
+        ->join('kelas','kelas.id_kelas', '=', 'jadwals.id_kelas')
+        ->get(['absens.*', 'mata_pelajarans.nama_mapel', 'kelas.nama_kelas','jadwals.hari'])->first();
+        // dd($jadwal->id_jadwal);
     
         return view('absen.absenEdit', ['guru'=>$guru,'jadwal' => $jadwal]);
     }
@@ -72,7 +73,7 @@ class AbsenController extends Controller
         }
         $jadwal->update([
             'id_guru' => $request->guru,
-            'id_jadwal' => $request->jadwal,
+            'id_jadwal' => $request->id_jadwal,
             'materi' => $request->materi,
         ]);
         return redirect('/guru/absen')->with('success', "Berhasil Mengupdate Absen");

@@ -31,7 +31,7 @@ Route::middleware(['auth:guru'])->prefix('guru')->group(function () {
     Route::post('/absen/tambah', [AbsenController::class, 'create']);
     Route::get('/absen/edit/{id}', [AbsenController::class, 'edit']);
     Route::put('/absen/edit/{id}', [AbsenController::class, 'editproses']);
-    Route::put('/absen/delete', [AbsenController::class, 'delete']);
+    Route::get('/absen/delete/{id}', [AbsenController::class, 'delete']);
     Route::get('/dashboard', [DashboardController::class, 'index']);
 });
 
