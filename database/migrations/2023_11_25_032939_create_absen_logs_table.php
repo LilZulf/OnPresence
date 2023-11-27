@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('absen_logs', function (Blueprint $table) {
             $table->id();
+            $table->string('id_siswa');
+            $table->string('id_absen');
+            $table->string('status');
             $table->timestamps();
         });
     }
