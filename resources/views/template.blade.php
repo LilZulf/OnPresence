@@ -138,7 +138,7 @@
                             </li>
 
                             <li class="sidebar-item {{ $currentPath == 'laporan' ? 'active' : '' }}  ">
-                                <a href="index.html" class='sidebar-link'>
+                                <a href="/laporan" class='sidebar-link'>
                                     <i class="bi bi-newspaper"></i>
                                     <span>Laporan</span>
                                 </a>

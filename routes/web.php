@@ -9,6 +9,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MataPelajaranController;
+use App\Http\Controllers\LaporanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,7 @@ Route::middleware(['auth:guru'])->prefix('guru')->group(function () {
     Route::put('/absen/edit/{id}', [AbsenController::class, 'editproses']);
     Route::get('/absen/delete/{id}', [AbsenController::class, 'delete']);
     Route::get('/absen/delete-log/{id}/{idAbsen}', [AbsenController::class, 'deleteLog']);
+ 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 });
 
@@ -87,6 +89,9 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/mapel/edit/{id}', [MataPelajaranController::class, 'edit']);
     Route::put('/mapel/update/{id}', [MataPelajaranController::class, 'editproses']);
     Route::get('/mapel/delete/{id}', [MataPelajaranController::class, 'delete']);
+
+    Route::get('/laporan', [LaporanController::class, 'index']);
+    Route::post('/laporan/filter', [LaporanController::class, 'filter']);
 });
 
 Route::get('/login/admin', [AuthController::class, 'loginAdmin'])->name('login-admin');
