@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 mb-5">
-                        <form action="{{ url('/laporan/filter') }}" method="POST">
+                        <form action="{{ url('/laporan') }}" method="POST">
                             @csrf
                             @method('POST')
                             <div class="row">
@@ -25,7 +25,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-success" type="submit">Filter</button>
+                            <button class="btn btn-primary" type="submit" name="action" value="filter">Filter</button>
+                            <button class="btn btn-success" type="submit" name="action" value="export">
+                                <i class="bi bi-file-excel"></i> Export Excel</button>
+                                <button class="btn btn-danger" type="submit" name="action" value="pdf">
+                                    <i class="bi bi-file-pdf"></i> Export PDF</button>
                         </form>
                     </div>
                     <div class="col">
@@ -43,19 +47,17 @@
                             <tbody>
                                 @if (isset($siswaAbsen) && !$siswaAbsen->isEmpty())
                                     @foreach ($siswaAbsen as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->hadir }}</td>
-                                        <td>{{ $item->sakit }}</td>
-                                        <td>{{ $item->izin }}</td>
-                                        <td>{{ $item->alpha }}</td>
-                                    </tr>
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->hadir }}</td>
+                                            <td>{{ $item->sakit }}</td>
+                                            <td>{{ $item->izin }}</td>
+                                            <td>{{ $item->alpha }}</td>
+                                        </tr>
                                     @endforeach
                                 @else
-                                    <tr>
-                                        <td colspan="6">Tidak ada data absen untuk ditampilkan.</td>
-                                    </tr>
+                                   
                                 @endif
                             </tbody>
 

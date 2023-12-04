@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('template');
+    return redirect()->route('login-guru');
 });
 Route::middleware(['auth:guru'])->prefix('guru')->group(function () {
     Route::get('/absen', [AbsenController::class, 'index']);
@@ -91,7 +91,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/mapel/delete/{id}', [MataPelajaranController::class, 'delete']);
 
     Route::get('/laporan', [LaporanController::class, 'index']);
-    Route::post('/laporan/filter', [LaporanController::class, 'filter']);
+    Route::post('/laporan', [LaporanController::class, 'prosesLaporan']);
 });
 
 Route::get('/login/admin', [AuthController::class, 'loginAdmin'])->name('login-admin');

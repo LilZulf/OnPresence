@@ -103,14 +103,14 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Berhasil',
-                    text: '{{ session('success') }}',
+                    text: 'Berhasil Login',
                 });
             @endif
             @if (session('errors'))
                 Swal.fire({
                     icon: 'error',
                     title: 'Gagal',
-                    text: '{{ session('errors') }}',
+                    text: 'Login Gagal',
                 });
             @endif
         });

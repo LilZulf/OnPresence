@@ -47,12 +47,7 @@ class AuthController extends Controller
 
         if (Auth::guard($guard)->attempt($credentials)) {
             $request->session()->regenerate();
-            if ($guard == 'web') {
-                return redirect()->intended('/siswa');
-            } else {
-                return redirect()->intended('/guru/absen');
-            }
-
+            return redirect()->intended('/dashboard');
         }
 
         return redirect('/login/' . $request->level)->withErrors([
