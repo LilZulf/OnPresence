@@ -44,7 +44,7 @@ class LaporanController extends Controller
         if ($request->input('action') == 'filter') {
             // Proses filter
             return view('laporan.laporan', ['siswaAbsen' => $siswaAbsen]);
-        } elseif ($request->input('action') == 'export-excel') {
+        } elseif ($request->input('action') == 'excel') {
             // Proses export Excel
             $export = new LaporanExport($siswaAbsen);
 

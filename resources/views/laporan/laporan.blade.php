@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                             <button class="btn btn-primary" type="submit" name="action" value="filter">Filter</button>
-                            <button class="btn btn-success" type="submit" name="action" value="export">
+                            <button class="btn btn-success" type="submit" name="action" value="excel">
                                 <i class="bi bi-file-excel"></i> Export Excel</button>
                                 <button class="btn btn-danger" type="submit" name="action" value="pdf">
                                     <i class="bi bi-file-pdf"></i> Export PDF</button>
