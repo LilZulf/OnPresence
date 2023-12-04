@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\LaporanExport;
 use Illuminate\Http\Request;
 use App\Models\AbsenLog;
 use Illuminate\Support\Facades\DB;
+use Excel;
+use PDF;
+use Illuminate\Support\Facades\Validator;
 
 class LaporanController extends Controller
 {
@@ -13,11 +17,18 @@ class LaporanController extends Controller
         return view('laporan.laporan');
     }
 
-    public function filter(Request $request)
+    public function prosesLaporan(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'mulai' => 'required',
+            'selesai' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/laporan')->withErrors($validator)->withInput();
+        }
+
         $tanggalMulai = $request->input('mulai');
         $tanggalSelesai = $request->input('selesai');
-
         $siswaAbsen = DB::table('absen_logs')
             ->join('siswas', 'absen_logs.id_siswa', '=', 'siswas.id')
             ->select('siswas.id', 'siswas.nama')
@@ -29,7 +40,19 @@ class LaporanController extends Controller
             ->groupBy('siswas.id', 'siswas.nama')
             ->get();
 
-        return view('laporan.laporan', ['siswaAbsen' => $siswaAbsen]);
+
+        if ($request->input('action') == 'filter') {
+            // Proses filter
+            return view('laporan.laporan', ['siswaAbsen' => $siswaAbsen]);
+        } elseif ($request->input('action') == 'excel') {
+            // Proses export Excel
+            $export = new LaporanExport($siswaAbsen);
+
+            return Excel::download($export, 'rekap_' . $tanggalMulai . ' - ' . $tanggalSelesai . '.xlsx');
+        } else {
+            $pdf = PDF::loadView('laporan.pdf', ['siswaAbsen' => $siswaAbsen]);
+            return $pdf->download('rekap_' . $tanggalMulai . ' - ' . $tanggalSelesai . '.pdf');
+        }
     }
 
 }
