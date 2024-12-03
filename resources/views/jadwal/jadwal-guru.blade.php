@@ -4,31 +4,30 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 @endsection
 @section('title')
-    <h3>Daftar Absen</h3>
+    <h3>Daftar Jadwal</h3>
 @endsection
 @section('content')
     <div class="table-responsive mt-3">
-        <a class="btn btn-primary mb-4" href="/guru/absen/tambah" role="button">Tambah Absen</a>
         <table id="example" class="table table-striped table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>Guru Pengajar</th>
                     <th>Pelajaran</th>
-                    <th>Materi</th>
-                    <th>Action</th>
+                    <th>Kelas</th>
+                    <th>Hari</th>
+                    <th>Jam</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($jadwal as $item)
+                @foreach ($jadwals as $jadwal)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->guru->nama_guru }}</td>
-                        <td>{{ $item->hari . ' / ' . 'Kelas ' . $item->nama_kelas . ' / ' . $item->nama_mapel }}</td>
-                        <td>{{ $item->materi }}</td>
-                        <td><a class="btn btn-warning" href="/guru/absen/edit/{{ $item->id }}" role="button">Ubah</a>
-                            <a class="btn btn-danger" href="/guru/absen/delete/{{ $item->id }}" role="button">Hapus</a>
-                        </td>
+                        <td>{{ $jadwal->guru->nama_guru }}</td>
+                        <td>{{ $jadwal->pelajaran->nama_mapel }}</td>
+                        <td>{{ $jadwal->kelas->nama_kelas }}</td>
+                        <td>{{ $jadwal->hari }}</td>
+                        <td>{{ $jadwal->jam }}</td>
                     </tr>
                 @endforeach
 
@@ -37,8 +36,9 @@
                 <th>No</th>
                 <th>Guru Pengajar</th>
                 <th>Pelajaran</th>
-                <th>Materi</th>
-                <th>Action</th>
+                <th>Kelas</th>
+                <th>Hari</th>
+                <th>Jam</th>
             </tfoot>
         </table>
     </div>
@@ -53,24 +53,6 @@
         new DataTable('#example');
     </script>
     <script>
-        $('.btn-danger').on('click', function(e) {
-            e.preventDefault();
-            var href = $(this).attr('href');
-
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = href;
-                }
-            });
-        });
         @if (session('success'))
             Swal.fire({
                 icon: 'success',

@@ -54,7 +54,8 @@
     <table>
         <thead>
             <tr>
-                <th>ID Siswa</th>
+                <th>No</th>
+                <th>Kelas</th>
                 <th>Nama Siswa</th>
                 <th>Hadir</th>
                 <th>Sakit</th>
@@ -65,7 +66,8 @@
         <tbody>
             @foreach($siswaAbsen as $siswa)
                 <tr>
-                    <td>{{ $siswa->id }}</td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $siswa->nama_kelas }}</td>
                     <td>{{ $siswa->nama }}</td>
                     <td>{{ $siswa->hadir }}</td>
                     <td>{{ $siswa->sakit }}</td>

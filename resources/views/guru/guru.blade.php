@@ -26,7 +26,7 @@
             @if (!$guru->isEmpty())
             @foreach ($guru as $item)
             <tr>
-                <td>{{$item->id}}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{$item->nama_guru}}</td>
                 <td>{{$item->nip}}</td>
                 <td>{{$item->alamat}}</td>

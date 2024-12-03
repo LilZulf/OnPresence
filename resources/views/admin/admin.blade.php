@@ -22,7 +22,7 @@
                 @if (!$user->isEmpty())
                     @foreach ($user as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
                             <td><a class="btn btn-warning" href="/admin/edit/{{ $item->id }}" role="button">Ubah</a> <a

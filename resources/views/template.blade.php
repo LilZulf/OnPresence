@@ -93,8 +93,8 @@
                                 </a>
                             </li>
 
-                            <li class="sidebar-item {{ $currentPath == 'jadwal' ? 'active' : '' }}  ">
-                                <a href="/jadwal" class='sidebar-link'>
+                            <li class="sidebar-item {{ $currentPath == 'guru/jadwal' ? 'active' : '' }}  ">
+                                <a href="/guru/jadwal" class='sidebar-link'>
                                     <i class="bi bi-grid-3x3"></i>
                                     <span>Jadwal</span>
                                 </a>

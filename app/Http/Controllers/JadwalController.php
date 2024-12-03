@@ -9,6 +9,7 @@ use App\Models\MataPelajaran;
 use Illuminate\Http\Request;
 use SebastianBergmann\Type\VoidType;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 
 class JadwalController extends Controller
@@ -17,6 +18,17 @@ class JadwalController extends Controller
         $jadwals = Jadwal::with(['guru', 'pelajaran','kelas'])->get();
         return view('jadwal.jadwal', ['jadwals' => $jadwals]);
     }
+
+    public function indexguru() {
+        $guru = Auth::guard('guru')->user();
+
+        $jadwals = Jadwal::with(['guru', 'pelajaran', 'kelas'])
+        ->where('id_guru', $guru->id) // Filter berdasarkan ID guru
+        ->get();
+
+        return view('jadwal.jadwal-guru', ['jadwals' => $jadwals]);
+    }
+
     public function tambah()  {
         $guru = Guru::all();
         $kelas = Kelas::all();

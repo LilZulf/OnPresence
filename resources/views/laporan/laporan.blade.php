@@ -12,6 +12,21 @@
                             @csrf
                             @method('POST')
                             <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="helperText">Kelas</label>
+                                        <div>
+                                            <select class="choices form-select" name="id_kelas">
+                                                <option value="">Pilih kelas...</option>       
+                                                @foreach ($kelas as $kls)
+                                                    <option value="{{ $kls->id_kelas }}">{{ $kls->nama_kelas }}</option>
+                                                @endforeach                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="jam">Mulai</label>
@@ -37,6 +52,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Kelas</th>
                                     <th>Nama</th>
                                     <th>Hadir</th>
                                     <th>Izin</th>
@@ -49,6 +65,7 @@
                                     @foreach ($siswaAbsen as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->nama_kelas }}</td>
                                             <td>{{ $item->nama }}</td>
                                             <td>{{ $item->hadir }}</td>
                                             <td>{{ $item->sakit }}</td>
@@ -64,6 +81,7 @@
                             <tfoot>
                                 <tr>
                                     <th>No</th>
+                                    <th>Kelas</th>
                                     <th>Nama</th>
                                     <th>Hadir</th>
                                     <th>Izin</th>
@@ -94,9 +112,8 @@
                 var errors = @json(session('errors')->all());
                 var errorMessage = errors;
                 var indonesianMessages = {
-                    'The kode_mapel has already been taken.': 'Kode Mata Pelajaran sudah ada.',
-                    'The kode_mapel field is required.': 'Kode Mata Pelajaran Harus Di Isi',
-                    'The nama_mapel field is required.': 'Nama Mata Pelajaran Harus Di Isi'
+                    'The mulai field is required.': 'Kolom Mulai Harus Di Isi',
+                    'The selesai field is required.': 'Kolom Selesai Harus Di Isi'
 
                 };
                 for (var key in indonesianMessages) {

@@ -18,9 +18,12 @@ class AbsenController extends Controller
 {
     public function index()
     {
+        $guru = Auth::guard('guru')->user();
+
         $jadwal = Jadwal::join('kelas', 'kelas.id_kelas', '=', 'jadwals.id_kelas')
             ->join('mata_pelajarans', 'mata_pelajarans.id_mapel', '=', 'jadwals.id_pelajaran')
             ->join('absens', 'absens.id_jadwal', '=', 'jadwals.id')
+            ->where('jadwals.id_guru', $guru->id)
             ->get(['absens.*', 'mata_pelajarans.nama_mapel', 'kelas.nama_kelas', 'jadwals.hari']);
 
         return view('absen.absen', ['jadwal' => $jadwal]);

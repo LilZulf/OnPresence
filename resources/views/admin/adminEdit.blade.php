@@ -29,8 +29,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="basicInput">Email</label>
-                                <input type="text" class="form-control" id="basicInput" name="password"
+                                <label for="basicInput">Password</label>
+                                <input type="password" class="form-control" id="basicInput" name="password"
                                     value="{{ $user->password }}">
                             </div>
 
