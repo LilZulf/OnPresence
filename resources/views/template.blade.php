@@ -29,9 +29,10 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="row d-flex justify-content-center align-items-center">
                             <div class="logo">
-                                <a href="/dashboard">
-                                    <img src="{{ asset('dist/assets/compiled/png/Logo.png') }}" class="img-fluid"
-                                        alt="Logo" style="width: 250px; height: auto;" srcset="">
+                                <a class="navbar-brand" href="/dashboard">
+                                    <h2>SI Absensi</h2>
+                                    {{-- <img src="{{ asset('dist/assets/compiled/png/Logo.png') }}" class="img-fluid"
+                                        alt="Logo" style="width: 250px; height: auto;" srcset=""> --}}
                                 </a>
                             </div>
 
@@ -93,12 +94,12 @@
                                 </a>
                             </li>
 
-                            <li class="sidebar-item {{ $currentPath == 'jadwal' ? 'active' : '' }}  ">
+                            {{-- <li class="sidebar-item {{ $currentPath == 'jadwal' ? 'active' : '' }}  ">
                                 <a href="/jadwal" class='sidebar-link'>
                                     <i class="bi bi-grid-3x3"></i>
                                     <span>Jadwal</span>
                                 </a>
-                            </li>
+                            </li> --}}
                         @else
                             <li class="sidebar-title">Menu</li>
 

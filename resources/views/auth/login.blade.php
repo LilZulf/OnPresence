@@ -29,14 +29,14 @@
                 <div id="auth-left">
                     <div class="auth-logo">
                         <div class="row align-items-end">
-                            <div class="col-lg-6 col-md-3 col-sm-4">
+                            {{-- <div class="col-lg-6 col-md-3 col-sm-4">
                                 <img src="{{ asset('dist/assets/compiled/png/logo_smk.png') }}" class="img-fluid"
                                     alt="Logo" style="width: 100px; height: auto;" srcset="">
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-7">
                                 <img src="{{ asset('dist/assets/compiled/png/logo.png') }}" class="img-fluid"
                                     alt="Logo" style="width: 350px; height: auto;" srcset="">
-                            </div>
+                            </div> --}}
                         </div>
 
                         {{-- <a href="/login">
